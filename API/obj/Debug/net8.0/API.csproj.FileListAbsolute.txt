@@ -30,3 +30,11 @@ C:\sources\2024\DatingApp\API\obj\Debug\net8.0\refint\API.dll
 C:\sources\2024\DatingApp\API\obj\Debug\net8.0\API.pdb
 C:\sources\2024\DatingApp\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\sources\2024\DatingApp\API\obj\Debug\net8.0\ref\API.dll
+c:\Users\erick\Documents\GitHub\DatingApp2024\API\obj\Debug\net8.0\API.csproj.AssemblyReference.cache
+c:\Users\erick\Documents\GitHub\DatingApp2024\API\obj\Debug\net8.0\API.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\erick\Documents\GitHub\DatingApp2024\API\obj\Debug\net8.0\API.AssemblyInfoInputs.cache
+c:\Users\erick\Documents\GitHub\DatingApp2024\API\obj\Debug\net8.0\API.AssemblyInfo.cs
+c:\Users\erick\Documents\GitHub\DatingApp2024\API\obj\Debug\net8.0\API.csproj.CoreCompileInputs.cache
+c:\Users\erick\Documents\GitHub\DatingApp2024\API\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cache
+c:\Users\erick\Documents\GitHub\DatingApp2024\API\obj\Debug\net8.0\API.sourcelink.json
+c:\Users\erick\Documents\GitHub\DatingApp2024\API\obj\Debug\net8.0\API.pdb
