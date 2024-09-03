@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0qceH/sVukM=",
+  "dgSpecHash": "koVJpFs5V5I=",
   "success": true,
-  "projectFilePath": "c:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\api\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\erick\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\erick\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
