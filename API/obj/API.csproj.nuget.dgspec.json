@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\api\\API.csproj": {}
+    "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\api\\API.csproj": {
+    "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\api\\API.csproj",
+        "projectUniqueName": "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\api\\API.csproj",
+        "projectPath": "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\API\\API.csproj",
         "packagesPath": "C:\\Users\\erick\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\api\\obj\\",
+        "outputPath": "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\erick\\AppData\\Roaming\\NuGet\\NuGet.Config"
