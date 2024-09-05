@@ -1,1 +1,10 @@
 <h1>{{title}}</h1>
+
+<ul>
+    <!-- This is the new implmentation of <li *ngFor="let user of users"> -->
+    @for (user of users; track user.id) {
+        <li>
+            {{user.id}} - {{user.userName}}
+        </li>
+    }
+</ul>
