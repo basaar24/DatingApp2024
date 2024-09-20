@@ -1,3 +1,4 @@
+using System.Text;
 using API.Data;
 using API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
