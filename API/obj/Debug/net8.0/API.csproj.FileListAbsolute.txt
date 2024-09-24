@@ -153,3 +153,11 @@ C:\Users\erick\Documents\GitHub\DatingApp2024\api\obj\Debug\net8.0\API.dll
 C:\Users\erick\Documents\GitHub\DatingApp2024\api\obj\Debug\net8.0\refint\API.dll
 C:\Users\erick\Documents\GitHub\DatingApp2024\api\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\Users\erick\Documents\GitHub\DatingApp2024\api\obj\Debug\net8.0\ref\API.dll
+C:\Users\erick\Documents\GitHub\DatingApp2024\API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\erick\Documents\GitHub\DatingApp2024\API\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\erick\Documents\GitHub\DatingApp2024\API\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\erick\Documents\GitHub\DatingApp2024\API\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\erick\Documents\GitHub\DatingApp2024\API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\erick\Documents\GitHub\DatingApp2024\API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\erick\Documents\GitHub\DatingApp2024\API\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\erick\Documents\GitHub\DatingApp2024\API\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
