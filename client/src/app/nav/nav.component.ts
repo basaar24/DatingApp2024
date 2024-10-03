@@ -24,6 +24,10 @@ export class NavComponent {
         console.log("Se ha producido un error");
         console.log(error);
       }
-    })
+    });
+  }
+
+  logout(): void{
+    this.loggedIn = false;
   }
 }
