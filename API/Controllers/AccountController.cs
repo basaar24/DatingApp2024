@@ -44,17 +44,17 @@ namespace API.Controllers;
             var user = await context.Users.FirstOrDefaultAsync(x => 
                 x.UserName.ToLower() == request.Username.ToLower());
 
-            if (user == null)
+            if (user == null){
                 return Unauthorized("Invalid username or password");
-
+            }
 
             using var hmac = new HMACSHA512(user.PasswordSalt);
             var computeHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(request.Password));
         
-            for (int i = 0; i < computeHash.Length; i++)
-                if (computeHash[i] != user.PasswordHash[i])
+            for (int i = 0; i < computeHash.Length; i++){
+                if (computeHash[i] != user.PasswordHash[i]){
                     return Unauthorized("Invalid username or password");
-
+                }}
              return new UserResponse
             {
                 Username = user.UserName,
