@@ -1,17 +1,20 @@
+namespace API.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using API.Entities;
 using Microsoft.IdentityModel.Tokens;
 
-namespace API.Services;
-
 public class TokenService(IConfiguration config) : ITokenService
 {
     public string CreateToken(AppUser user)
     {
-        var tokenKey = config["TokenKey"] ?? throw new Exception("TokenKey not found");
-        if (tokenKey.Length < 64) throw new Exception("TokenKey too short");
+        var tokenKey = config["TokenKey"] ?? throw new ArgumentException("TokenKey not found");
+        if (tokenKey.Length < 64)
+        {
+            throw new ArgumentException("TokenKey too short");
+        }
+
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey));
 
         var claims = new List<Claim>

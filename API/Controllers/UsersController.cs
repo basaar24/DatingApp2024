@@ -1,10 +1,9 @@
+namespace API.Controllers;
 using API.Data;
 using API.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
-namespace API.Controllers;
 
 [Authorize]
 public class UsersController : BaseApiController
@@ -35,10 +34,7 @@ public class UsersController : BaseApiController
 
         return user;
     }
-    
+
     [HttpGet("{name}")] // api/users/Calamardo
-    public ActionResult<string> Ready(string name)
-    {
-        return $"Hi {name}";
-    }
+    public ActionResult<string> Ready(string name) => $"Hi {name}";
 }
