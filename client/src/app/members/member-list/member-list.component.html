@@ -1,1 +1,7 @@
-<p>member-list works!</p>
+<div class="row">
+    <div class="col-2">
+        @for (member of members; track member.id) {
+            <p>{{member.knownAs}}</p>
+        }
+    </div>
+</div>
