@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\API\\API.csproj": {}
+    "C:\\sources\\2024\\DatingApp\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\API\\API.csproj": {
+    "C:\\sources\\2024\\DatingApp\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\API\\API.csproj",
+        "projectUniqueName": "C:\\sources\\2024\\DatingApp\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\erick\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\erick\\Documents\\GitHub\\DatingApp2024\\API\\obj\\",
+        "projectPath": "C:\\sources\\2024\\DatingApp\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\elbar\\.nuget\\packages\\",
+        "outputPath": "C:\\sources\\2024\\DatingApp\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\erick\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\elbar\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -43,23 +43,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+            "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[8.0.8, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[8.0.8, )"
-            },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
-              "target": "Package",
-              "version": "[8.0.8, )"
-            },
-            "System.IdentityModel.Tokens.Jwt": {
-              "target": "Package",
-              "version": "[8.0.2, )"
+              "version": "[6.4.0, )"
             }
           },
           "imports": [
@@ -81,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
