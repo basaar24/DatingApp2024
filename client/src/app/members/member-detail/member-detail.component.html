@@ -41,8 +41,20 @@
                     <h4>Interests</h4>
                     <p>{{member.interests}}</p>
                 </tab>
-                <tab heading="Photos">
-                    <p>!Las fotos van'ir aquí!</p>
+                <tab heading="Photos" #photoTab="tab">
+                    @if (photoTab.active) {
+                        <gallery
+                            [items]="images"
+                            class="gallery"
+                            thumbs thumbdisabled="false" thumbPosition="left" thumbimagesize="cover" thumbscrolldisabled="false" thumbautosize="false"
+                            bullets bulletdisabled="false" bulletPosition="bottom"
+                            counter counterPosition="top"
+                            orientation="horizontal"
+                            scrolldisabled="false"
+                            itemautosize="false" autoheight="false" dir="ltr"
+                            style="--g-thumb-width: 120px; --g-thumb-height: 90px; --slider-width: 998px; --slider-height: 409px;">
+                    </gallery>
+                    }
                 </tab>
                 <tab heading="Mensajes">
                     <p>!Los mensajes van'ir aquí!</p>
