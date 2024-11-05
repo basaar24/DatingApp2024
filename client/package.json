@@ -24,6 +24,7 @@
     "font-awesome": "^4.7.0",
     "ng-gallery": "^12.0.0",
     "ngx-bootstrap": "^12.0.0",
+    "ngx-spinner": "^17.0.0",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
