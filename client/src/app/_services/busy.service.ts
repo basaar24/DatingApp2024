@@ -10,11 +10,7 @@ export class BusyService {
   
   busy(): void {
     this.busyRequestCount++;
-    this.spinnerService.show(undefined, {
-      type: "fire",
-      bdColor: "rgba(255,255,255,0.5)",
-      color: "rgba(0,255,0,1)"
-    });
+    this.spinnerService.show(undefined, {});
   }
 
   idle(): void {
