@@ -1,8 +1,7 @@
+namespace API.Extensions;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-
-namespace API.Extensions;
 
 public static class IdentityServiceExtensions
 {
@@ -11,7 +10,7 @@ public static class IdentityServiceExtensions
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
-                var tokenKey = config["TokenKey"] ?? throw new ArgumentNullException("TokenKey");
+                var tokenKey = config["TokenKey"] ?? throw new ArgumentException("TokenKey");
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
