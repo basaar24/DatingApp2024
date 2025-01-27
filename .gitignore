@@ -484,3 +484,6 @@ $RECYCLE.BIN/
 *.swp
 
 *.db
+
+coveragereport
+TestResult
