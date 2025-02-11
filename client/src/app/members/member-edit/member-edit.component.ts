@@ -22,7 +22,7 @@ export class MemberEditComponent implements OnInit {
     }
   }
   member?: Member;
-  private accountService = inject(AccountService);
+  public accountService = inject(AccountService);
   private membersService = inject(MembersService);
   private toastr = inject(ToastrService);
 
