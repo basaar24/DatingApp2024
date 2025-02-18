@@ -1,21 +1,24 @@
 <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
     <h2 class="text-center text-primary">Sign up</h2>
     <hr>
+
+    <div class="mb-3">
+        <label style="margin-right: 10px;">I am a:</label>
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="female" formControlName="gender">Female
+        </label>
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="male" formControlName="gender">Male
+        </label>
+    </div>
     
-    <app-text-input
-        [formControl]="$any(registerForm.controls['username'])"
-        [label]="'Username'">
-    </app-text-input>
-    <app-text-input
-        [formControl]="$any(registerForm.controls['password'])"
-        [label]="'Password'"
-        [type]="'password'">
-    </app-text-input>
-    <app-text-input
-        [formControl]="$any(registerForm.controls['confirmPassword'])"
-        [label]="'Confirm password'"
-        [type]="'password'">
-    </app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['username'])" [label]="'Username'" />
+    <app-text-input [formControl]="$any(registerForm.controls['knownAs'])" [label]="'Known as'" />
+    <app-text-input [formControl]="$any(registerForm.controls['dateOfBirth'])" [label]="'Birthday'" />
+    <app-text-input [formControl]="$any(registerForm.controls['city'])" [label]="'City'" />
+    <app-text-input [formControl]="$any(registerForm.controls['country'])" [label]="'Country'" />
+    <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'Password'" [type]="'password'" />
+    <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'Confirm password'" [type]="'password'" />
     
     <div class="form-group text-center">
         <button class="btn btn-success me-2" type="submit">Register</button>
