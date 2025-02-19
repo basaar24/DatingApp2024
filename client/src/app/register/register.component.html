@@ -14,17 +14,24 @@
     
     <app-text-input [formControl]="$any(registerForm.controls['username'])" [label]="'Username'" />
     <app-text-input [formControl]="$any(registerForm.controls['knownAs'])" [label]="'Known as'" />
-    <app-date-picker [formControl]="$any(registerForm.controls['dateOfBirth'])" [label]="'Birthday'" [maxDate]="maxDate"/>
+    <app-date-picker [formControl]="$any(registerForm.controls['birthDay'])" [label]="'Birthday'" [maxDate]="maxDate"/>
     <app-text-input [formControl]="$any(registerForm.controls['city'])" [label]="'City'" />
     <app-text-input [formControl]="$any(registerForm.controls['country'])" [label]="'Country'" />
     <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'Password'" [type]="'password'" />
     <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'Confirm password'" [type]="'password'" />
     
+    @if (validationErrors) {
+        <div class="alert alert-danger text-start">
+            <ul>
+                @for (error of validationErrors; track $index) {
+                    <li>{{error}}</li>
+                }
+            </ul>
+        </div>
+    }
+
     <div class="form-group text-center">
-        <button class="btn btn-success me-2" type="submit">Register</button>
+        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit">Register</button>
         <button class="btn btn-default me-2" type="button" (click)="cancel()">Cancel</button>
     </div>
 </form>
-
-<p>Form value: {{registerForm.value | json}}</p>
-<p>Form status: {{registerForm.status | json}}</p>
