@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DataEntities;
 using API.DTOs;
+using API.Helpers;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -31,10 +32,11 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
                 .ProjectTo<MemberResponse>(mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
 
-    public async Task<IEnumerable<MemberResponse>> GetMembersAsync()
-        => await context.Users
-                .ProjectTo<MemberResponse>(mapper.ConfigurationProvider)
-                .ToListAsync();
+    public async Task<PagedList<MemberResponse>> GetMembersAsync(UserParams userParams)
+    {
+        var query = context.Users.ProjectTo<MemberResponse>(mapper.ConfigurationProvider);
+        return await PagedList<MemberResponse>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
+    }
 
     public async Task<bool> SaveAllAsync()
         => await context.SaveChangesAsync() > 0;
