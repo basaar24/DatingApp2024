@@ -1,6 +1,6 @@
 <div class="row">
     
-    @for (member of membersService.members(); track member.id) {
+    @for (member of membersService.paginatedResult()?.items; track member.id) {
         <div class="col-2">
             <app-member-card [member]="member"></app-member-card>
         </div>
