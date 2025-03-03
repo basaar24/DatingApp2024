@@ -1,44 +1,122 @@
+namespace API.Controllers;
+
 using API.Data;
-using API.Entities;
+using API.DataEntities;
+using API.DTOs;
+using API.Extensions;
+using API.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
-namespace API.Controllers;
 
 [Authorize]
 public class UsersController : BaseApiController
 {
-    private readonly DataContext _context;
+    private readonly IUserRepository _repository;
+    private readonly IPhotoService _photoService;
+    private readonly IMapper _mapper;
 
-    public UsersController(DataContext context)
+    public UsersController(IUserRepository repository, IPhotoService photoService, IMapper mapper)
     {
-        _context = context;
+        _repository = repository;
+        _photoService = photoService;
+        _mapper = mapper;
     }
 
-    [AllowAnonymous]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<AppUser>>> GetUsersAsync()
+    public async Task<ActionResult<IEnumerable<MemberResponse>>> GetAllAsync()
     {
-        var users = await _context.Users.ToListAsync();
-
-        return users;
-    } 
-
-    [Authorize]
-    [HttpGet("{id:int}")] //api/users/2
-    public async Task<ActionResult<AppUser>> GetUsersById(int id)
-    {
-        var user = await _context.Users.FindAsync(id);
-
-        if (user == null) return NotFound();
-
-        return user;
+        var members = await _repository.GetMembersAsync();
+        return Ok(members);
     }
-    [HttpGet("{name}")] //api/v1/users/2
-    public ActionResult<string> Ready(string name)
+
+    [HttpGet("{username}", Name = "GetByUsername")] // api/users/Calamardo
+    public async Task<ActionResult<MemberResponse>> GetByUsernameAsync(string username)
     {
-        return $"hola {name}";
-    } 
-    
+        var member = await _repository.GetMemberAsync(username);
+
+        if (member == null)
+        {
+            return NotFound();
+        }
+
+        return member;
+    }
+
+    [HttpPut]
+    public async Task<ActionResult> UpdateUser(MemberUpdateRequest request)
+    {
+        var user = await _repository.GetByUsernameAsync(User.GetUserName());
+
+        if (user == null)
+        {
+            return BadRequest("Could not find user");
+        }
+
+        _mapper.Map(request, user);
+        _repository.Update(user);
+
+        if (await _repository.SaveAllAsync())
+        {
+            return NoContent();
+        }
+
+        return BadRequest("Update user failed!");
+    }
+
+    [HttpPost("photo")]
+    public async Task<ActionResult<PhotoResponse>> AddPhoto(IFormFile file)
+    {
+        var user = await _repository.GetByUsernameAsync(User.GetUserName());
+
+        if (user == null)
+        {
+            return BadRequest("Cannot update user");
+        }
+
+        var result = await _photoService.AddPhotoAsync(file);
+
+        if (result.Error != null)
+        {
+            return BadRequest(result.Error.Message);
+        }
+
+        var photo = new Photo
+        {
+            Url = result.SecureUrl.AbsoluteUri,
+            PublicId = result.PublicId
+        };
+
+        user.Photos.Add(photo);
+
+        if (await _repository.SaveAllAsync())
+        {
+            return CreatedAtAction("GetByUsername",
+                new { username = user.UserName }, _mapper.Map<PhotoResponse>(photo));
+        }
+
+        return BadRequest("Problem adding the photo");
+    }
+
+    [HttpPut("photo/{photoId:int}")]
+    public async Task<ActionResult> SetPhotoAsMain(int photoId)
+    {
+        var user = await _repository.GetByUsernameAsync(User.GetUserName());
+
+        if (user == null) return BadRequest("User not found");
+
+        var photo = user.Photos.FirstOrDefault(p => p.Id == photoId);
+
+        if (photo == null || photo.IsMain) return BadRequest("Can't set this photo as the main one!");
+
+        var currentMain = user.Photos.FirstOrDefault(p => p.IsMain);
+
+        if (currentMain != null) currentMain.IsMain = false;
+
+        photo.IsMain = true;
+
+        if (await _repository.SaveAllAsync()) return NoContent();
+
+        return BadRequest("There was a problem.");
+    }
 }
