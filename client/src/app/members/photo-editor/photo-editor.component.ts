@@ -10,7 +10,7 @@ import { Photo } from '../../_models/photo';
 @Component({
   selector: 'app-photo-editor',
   standalone: true,
-  
+
   imports: [NgIf, NgFor, NgStyle, NgClass, FileUploadModule, DecimalPipe],
   templateUrl: './photo-editor.component.html',
   styleUrl: './photo-editor.component.css'
@@ -18,7 +18,7 @@ import { Photo } from '../../_models/photo';
 export class PhotoEditorComponent implements OnInit {
   private accountService = inject(AccountService);
   private memberService = inject(MembersService);
-
+//
   member = input.required<Member>();
   uploader?: FileUploader;
   hasBaseDropZoneOver = false;
