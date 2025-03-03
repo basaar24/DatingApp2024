@@ -1,5 +1,45 @@
 <div class="row">
     
+    <div class="text-center mt-3">
+        <h2>Your matches - {{membersService.paginatedResult()?.pagination?.totalItems}}</h2>
+    </div>
+
+    <div class="container mt-3">
+        <form #form="ngForm" class="d-flex mb-3" (ngSubmit)="loadMembers()">
+            <div class="d-flex mx-2">
+                <label class="col-form-label">Age from: </label>
+                <input type="number"
+                    class="form-control ms-1"
+                    style="width: 70px;"
+                    name="minAge"
+                    [(ngModel)]="userParams.minAge">
+            </div>
+            <div class="d-flex mx-2">
+                <label class="col-form-label">Age to: </label>
+                <input type="number"
+                    class="form-control ms-1"
+                    style="width: 70px;"
+                    name="maxAge"
+                    [(ngModel)]="userParams.maxAge">
+            </div>
+            <div class="d-flex mx-2">
+                <label class="col-form-label">Show: </label>
+                <select name="gender"
+                    style="width: 130px;"
+                    class="form-select ms-1"
+                    [(ngModel)]="userParams.gender">
+                    @for (gender of genderList; track gender.value) {
+                        <option [value]="gender.value">{{gender.display}}</option>
+                    }
+                </select>
+            </div>
+
+            <button class="btn btn-primary ms-1" type="submit">Filter</button>
+            <button (click)="resetFilters()" class="btn btn-info ms-1" type="submit">Reset</button>
+
+        </form>
+    </div>
+
     @for (member of membersService.paginatedResult()?.items; track member.id) {
         <div class="col-2">
             <app-member-card [member]="member"></app-member-card>
