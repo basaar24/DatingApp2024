@@ -16,9 +16,9 @@ public class LogUserActivity : IAsyncActionFilter
             return;
         }
 
-        var username = resultContext.HttpContext.User.GetUserName();
+        var userId = resultContext.HttpContext.User.GetUserId();
         var repo = resultContext.HttpContext.RequestServices.GetRequiredService<IUserRepository>();
-        var user = await repo.GetByUsernameAsync(username);
+        var user = await repo.GetByIdAsync(userId);
 
         if (user == null)
         {
