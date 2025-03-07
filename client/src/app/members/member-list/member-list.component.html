@@ -12,7 +12,7 @@
                     class="form-control ms-1"
                     style="width: 70px;"
                     name="minAge"
-                    [(ngModel)]="userParams.minAge">
+                    [(ngModel)]="membersService.userParams().minAge">
             </div>
             <div class="d-flex mx-2">
                 <label class="col-form-label">Age to: </label>
@@ -20,14 +20,14 @@
                     class="form-control ms-1"
                     style="width: 70px;"
                     name="maxAge"
-                    [(ngModel)]="userParams.maxAge">
+                    [(ngModel)]="membersService.userParams().maxAge">
             </div>
             <div class="d-flex mx-2">
                 <label class="col-form-label">Show: </label>
                 <select name="gender"
                     style="width: 130px;"
                     class="form-select ms-1"
-                    [(ngModel)]="userParams.gender">
+                    [(ngModel)]="membersService.userParams().gender">
                     @for (gender of genderList; track gender.value) {
                         <option [value]="gender.value">{{gender.display}}</option>
                     }
@@ -44,14 +44,14 @@
                         name="orderBy"
                         (click)="loadMembers()"
                         btnRadio="lastActive"
-                        [(ngModel)]="userParams.orderBy"
+                        [(ngModel)]="membersService.userParams().orderBy"
                     >Last Active</button>
                     <button type="button"
                         class="btn btn-primary"
                         name="orderBy"
                         (click)="loadMembers()"
                         btnRadio="created"
-                        [(ngModel)]="userParams.orderBy"
+                        [(ngModel)]="membersService.userParams().orderBy"
                     >Recently joined</button>
                 </div>
             </div>
@@ -73,6 +73,7 @@
             [totalItems]="membersService.paginatedResult()?.pagination!.totalItems"
             [itemsPerPage]="membersService.paginatedResult()?.pagination!.itemsPerPage"
             (pageChanged)="pageChanged($event)"
+            [(ngModel)]="membersService.paginatedResult()?.pagination!.currentPage"
             [maxSize]="12"
             previousText="&lsaquo;"
             nextText="&rsaquo;"
