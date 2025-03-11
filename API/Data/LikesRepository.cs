@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 public class LikesRepository(DataContext context, IMapper mapper) : ILikesRepository
 {
     public void AddLike(UserLike like) => context.Likes.Add(like);
-    public void DeleteLike(UserLike like) => context.Likes.Remove(like);
+    public void RemoveLike(UserLike like) => context.Likes.Remove(like);
 
     public async Task<IEnumerable<int>> GetCurrentUserLikeIdsAsync(int currentUSerId)
         => await context.Likes
