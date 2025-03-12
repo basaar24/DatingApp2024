@@ -17,6 +17,9 @@
         <h6 class="card-title text-center mb-1">
             <i class="fa fa-user me-2"></i>
             {{member().knownAs}}, {{member().age}}
+            @if (hasLiked()) {
+                <i class="fa fa-heart ms-2" style="color: red;"></i>
+            }
         </h6>
         <p class="card-text text-muted text-center">{{member().city}}</p>
     </div>
