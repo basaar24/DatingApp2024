@@ -16,5 +16,4 @@ public class Message
     public int SenderId { get; set; }
     public AppUser Recipient { get; set; } = null!;
     public int RecipientId { get; set; }
-
 }
