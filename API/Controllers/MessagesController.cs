@@ -5,6 +5,7 @@ using API.Data;
 using API.DataEntities;
 using API.DTOs;
 using API.Extensions;
+using API.Helpers;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,5 +49,15 @@ public class MessagesController
         }
 
         return BadRequest("Something went wrong!");
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<MessageResponse>>> GetMessagesForUser(
+        [FromQuery] MessageParams messageParams)
+    {
+        messageParams.Username = User.GetUserName();
+        var messages = await messageRepository.GetForUserAsync(messageParams);
+        Response.AddPaginationHeader(messages);
+        return messages;
     }
 }
