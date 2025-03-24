@@ -1,3 +1,52 @@
-@for (message of messagesService.paginatedResult()?.items; track message.id) {
-    <p>{{message.content}}</p>
+<div class="container mt-3">
+    <div class="d-flex">
+        <div class="btn-group">
+            <button class="btn btn-primary" btnRadio="unread"
+                [(ngModel)]="container" (click)="loadMessages()">Unread
+            </button>
+            <button class="btn btn-primary" btnRadio="inbox"
+                [(ngModel)]="container" (click)="loadMessages()">Inbox
+            </button>
+            <button class="btn btn-primary" btnRadio="outbox"
+                [(ngModel)]="container" (click)="loadMessages()">Outbox
+            </button>
+        </div>
+    </div>
+</div>
+
+@if (!messagesService.paginatedResult()?.items) {
+    <h3>No messages :(</h3>
+} @else {
+    <table class="table table-hover mt-3" style="cursor: pointer;">
+        <thead>
+            <tr>
+                <th style="width: 40%">Message</th>
+                <th style="width: 20%">From/To</th>
+                <th style="width: 20%">Sent/Received</th>
+                <th style="width: 20%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (message of messagesService.paginatedResult()?.items; track message.id) {
+                <tr routerLink="{{getRoute(message)}}">
+                    <td>{{message.content}}</td>
+                    <td>
+                        <div>
+                            <img [src]="container === 'outbox'
+                                ? (message.recipientPhotoUrl || './assets/user.png')
+                                : (message.senderPhotoUrl || './assets/user.png')"
+                                alt="User photo">
+                            <strong>
+                                {{container === 'outbox'
+                                    ? message.recipientUsername
+                                    : message.senderUsername}}
+                            </strong>
+                        </div>
+                    </td>
+                    <td>{{message.messageSent | timeago}}</td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
