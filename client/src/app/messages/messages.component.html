@@ -26,18 +26,19 @@
                 <th style="width: 20%"></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="align-middle">
             @for (message of messagesService.paginatedResult()?.items; track message.id) {
                 <tr routerLink="{{getRoute(message)}}">
                     <td>{{message.content}}</td>
                     <td>
                         <div>
-                            <img [src]="container === 'outbox'
-                                ? (message.recipientPhotoUrl || './assets/user.png')
-                                : (message.senderPhotoUrl || './assets/user.png')"
+                            <img class="rounded-circle"
+                                [src]="container === 'Outbox'
+                                    ? (message.recipientPhotoUrl || './assets/user.png')
+                                    : (message.senderPhotoUrl || './assets/user.png')"
                                 alt="User photo">
                             <strong>
-                                {{container === 'outbox'
+                                {{container === 'Outbox'
                                     ? message.recipientUsername
                                     : message.senderUsername}}
                             </strong>
@@ -49,4 +50,21 @@
             }
         </tbody>
     </table>
+}
+
+@if (messagesService.paginatedResult()?.pagination) {
+    <div class="d-flex justify-content-center">
+        <pagination
+            [boundaryLinks]="true"
+            [totalItems]="messagesService.paginatedResult()?.pagination!.totalItems"
+            [itemsPerPage]="messagesService.paginatedResult()?.pagination!.itemsPerPage"
+            (pageChanged)="pageChanged($event)"
+            [(ngModel)]="messagesService.paginatedResult()?.pagination!.currentPage"
+            [maxSize]="10"
+            previousText="&lsaquo;"
+            nextText="&rsaquo;"
+            firstText="&laquo;"
+            lastText="&raquo;">
+        </pagination>
+    </div>
 }
