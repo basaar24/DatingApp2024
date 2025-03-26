@@ -1,13 +1,13 @@
 <div class="container mt-3">
     <div class="d-flex">
         <div class="btn-group">
-            <button class="btn btn-primary" btnRadio="unread"
+            <button class="btn btn-primary" btnRadio="Unread"
                 [(ngModel)]="container" (click)="loadMessages()">Unread
             </button>
-            <button class="btn btn-primary" btnRadio="inbox"
+            <button class="btn btn-primary" btnRadio="Inbox"
                 [(ngModel)]="container" (click)="loadMessages()">Inbox
             </button>
-            <button class="btn btn-primary" btnRadio="outbox"
+            <button class="btn btn-primary" btnRadio="Outbox"
                 [(ngModel)]="container" (click)="loadMessages()">Outbox
             </button>
         </div>
@@ -33,12 +33,12 @@
                     <td>
                         <div>
                             <img class="rounded-circle"
-                                [src]="container === 'Outbox'
+                                [src]="container === 'outbox'
                                     ? (message.recipientPhotoUrl || './assets/user.png')
                                     : (message.senderPhotoUrl || './assets/user.png')"
                                 alt="User photo">
                             <strong>
-                                {{container === 'Outbox'
+                                {{container === 'outbox'
                                     ? message.recipientUsername
                                     : message.senderUsername}}
                             </strong>
