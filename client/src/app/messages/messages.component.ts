@@ -19,6 +19,7 @@ export class MessagesComponent implements OnInit {
   container = "Inbox";
   pageNumber = 1;
   pageSize = 5;
+  isOutbox = this.container === "Outbox";
 
   ngOnInit(): void {
     this.loadMessages();
@@ -29,7 +30,7 @@ export class MessagesComponent implements OnInit {
   }
 
   getRoute(message: Message) {
-    if (this.container === 'outbox') {
+    if (this.isOutbox) {
       return `/members/${message.recipientUsername}`;
     }
     else {
