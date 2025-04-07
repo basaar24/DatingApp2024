@@ -81,7 +81,7 @@ public class MessagesController
             return BadRequest("Can't delete the message");
         }
 
-        if (message.SenderUsername != username || message.RecipientUsername != username)
+        if (message.SenderUsername != username && message.RecipientUsername != username)
         {
             return Forbid();
         }
