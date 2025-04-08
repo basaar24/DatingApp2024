@@ -1,0 +1,12 @@
+<div class="mb-3 form-floating">
+    <input
+        [class.is-invalid]="control.invalid && control.touched"
+        class="form-control"
+        [formControl]="control"
+        placeholder="{{label()}}"
+        bsDatepicker
+        [bsConfig]="bsConfig"
+        [maxDate]="maxDate()">
+    <label>{{label()}}</label>
+    <div *ngIf="control.hasError('required')" class="invalid-feedback text-start">Please enter a {{label()}}</div>
+</div>

@@ -7,10 +7,12 @@ using API.DataEntities;
 using API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 public class AccountController(
     DataContext context,
-    ITokenService tokenService) : BaseApiController
+    ITokenService tokenService,
+    IMapper mapper) : BaseApiController
 {
     [HttpPost("register")]
     public async Task<ActionResult<UserResponse>> RegisterAsync(RegisterRequest request)
@@ -20,30 +22,30 @@ public class AccountController(
             return BadRequest("Username already in use");
         }
 
-        return Ok();
+        using var hmac = new HMACSHA512();
+        var user = mapper.Map<AppUser>(request);
+        user.UserName = request.Username;
+        user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(request.Password));
+        user.PasswordSalt = hmac.Key;
 
-        // using var hmac = new HMACSHA512();
-        // var user = new AppUser
-        // {
-        //     UserName = request.Username,
-        //     PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(request.Password)),
-        //     PasswordSalt = hmac.Key
-        // };
+        context.Users.Add(user);
+        await context.SaveChangesAsync();
 
-        // context.Users.Add(user);
-        // await context.SaveChangesAsync();
-
-        // return new UserResponse
-        // {
-        //     Username = user.UserName,
-        //     Token = tokenService.CreateToken(user)
-        // };
+        return new UserResponse
+        {
+            Username = user.UserName,
+            Token = tokenService.CreateToken(user),
+            KnownAs = user.KnownAs,
+            Gender = user.Gender
+        };
     }
 
     [HttpPost("login")]
     public async Task<ActionResult<UserResponse>> LoginAsync(LoginRequest request)
     {
-        var user = await context.Users.FirstOrDefaultAsync(x => x.UserName.ToLower() == request.Username.ToLower());
+        var user = await context.Users
+            .Include(x => x.Photos)
+            .FirstOrDefaultAsync(x => x.UserName.ToLower() == request.Username.ToLower());
 
         if (user == null)
         {
@@ -64,7 +66,10 @@ public class AccountController(
         return new UserResponse
         {
             Username = user.UserName,
-            Token = tokenService.CreateToken(user)
+            KnownAs = user.KnownAs,
+            Token = tokenService.CreateToken(user),
+            Gender = user.Gender,
+            PhotoUrl = user.Photos.FirstOrDefault(p => p.IsMain)?.Url
         };
     }
 
