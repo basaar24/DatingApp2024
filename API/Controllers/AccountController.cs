@@ -24,9 +24,9 @@ public class AccountController(
 
         using var hmac = new HMACSHA512();
         var user = mapper.Map<AppUser>(request);
-        user.UserName = request.Username;
-        user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(request.Password));
-        user.PasswordSalt = hmac.Key;
+        user.UserName = request.Username.ToLowerInvariant();
+        // user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(request.Password));
+        // user.PasswordSalt = hmac.Key;
 
         context.Users.Add(user);
         await context.SaveChangesAsync();
@@ -52,16 +52,16 @@ public class AccountController(
             return Unauthorized("Invalid username or password");
         }
 
-        using var hmac = new HMACSHA512(user.PasswordSalt);
-        var computeHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(request.Password));
+        // using var hmac = new HMACSHA512(user.PasswordSalt);
+        // var computeHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(request.Password));
 
-        for (var i = 0; i < computeHash.Length; i++)
-        {
-            if (computeHash[i] != user.PasswordHash[i])
-            {
-                return Unauthorized("Invalid username or password");
-            }
-        }
+        // for (var i = 0; i < computeHash.Length; i++)
+        // {
+        //     if (computeHash[i] != user.PasswordHash[i])
+        //     {
+        //         return Unauthorized("Invalid username or password");
+        //     }
+        // }
 
         return new UserResponse
         {
