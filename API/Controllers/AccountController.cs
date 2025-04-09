@@ -45,23 +45,12 @@ public class AccountController(
     {
         var user = await context.Users
             .Include(x => x.Photos)
-            .FirstOrDefaultAsync(x => x.UserName.ToLower() == request.Username.ToLower());
+            .FirstOrDefaultAsync(x => x.UserName.ToLowerInvariant() == request.Username.ToLowerInvariant());
 
-        if (user == null)
+        if (user == null || user.UserName == null)
         {
             return Unauthorized("Invalid username or password");
         }
-
-        // using var hmac = new HMACSHA512(user.PasswordSalt);
-        // var computeHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(request.Password));
-
-        // for (var i = 0; i < computeHash.Length; i++)
-        // {
-        //     if (computeHash[i] != user.PasswordHash[i])
-        //     {
-        //         return Unauthorized("Invalid username or password");
-        //     }
-        // }
 
         return new UserResponse
         {
@@ -74,5 +63,5 @@ public class AccountController(
     }
 
     private async Task<bool> UserExistsAsync(string username) =>
-        await context.Users.AnyAsync(u => u.UserName.ToLower() == username.ToLower());
+        await context.Users.AnyAsync(u => u.NormalizedUserName == username.ToUpper());
 }
