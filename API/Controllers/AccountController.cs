@@ -25,8 +25,6 @@ public class AccountController(
         using var hmac = new HMACSHA512();
         var user = mapper.Map<AppUser>(request);
         user.UserName = request.Username.ToLowerInvariant();
-        // user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(request.Password));
-        // user.PasswordSalt = hmac.Key;
 
         context.Users.Add(user);
         await context.SaveChangesAsync();
