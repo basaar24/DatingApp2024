@@ -38,7 +38,7 @@ public class UsersController : BaseApiController
     [HttpGet("{username}", Name = "GetByUsername")] // api/users/Calamardo
     public async Task<ActionResult<MemberResponse>> GetByUsernameAsync(string username)
     {
-        var member = await _repository.GetMemberAsync(username);
+        var member = await _repository.GetMemberAsync(username.ToLowerInvariant());
 
         if (member == null)
         {
